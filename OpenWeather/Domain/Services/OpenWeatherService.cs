@@ -16,7 +16,7 @@ namespace OpenWeather.Domain.Services
         public async Task<T> GetCurrentWeather<T>()
         {
             var authClient = _httpClientFactory.CreateClient();
-            var discoveryDocument = await authClient.GetDiscoveryDocumentAsync("https://localhost:10001");      // why 10001?
+            var discoveryDocument = await authClient.GetDiscoveryDocumentAsync("https://localhost:10001");      // why 10001? IdentityServer
             var tokenResponse = await authClient.RequestClientCredentialsTokenAsync(new ClientCredentialsTokenRequest
             {
                 Address = discoveryDocument.TokenEndpoint,
@@ -28,7 +28,7 @@ namespace OpenWeather.Domain.Services
 
             T data = default(T);
 
-            var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, "http://api.weatherapi.com/v1/current.json?key=7e3d5c232f4844219e272126222207&q=Minsk&aqi=no")
+            var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, "https://api.openweathermap.org/data/2.5/weather?q=London&appid=4fc94dab784a4fa5a8e7913573db7835")
             {
                 Headers =
                 {
