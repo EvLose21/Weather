@@ -28,4 +28,9 @@ app.UseRouting();
 
 app.UseIdentityServer();
 
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+});
+
 app.Run();

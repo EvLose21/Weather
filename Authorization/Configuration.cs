@@ -16,8 +16,7 @@ namespace Authorization
 
                     AllowedScopes =
                     {
-                        "WeatherApi",
-                        "WeatherStack"
+                        "WeatherApi"
                     }
                 }
             };

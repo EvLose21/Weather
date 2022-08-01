@@ -13,7 +13,7 @@ namespace Api.WeatherStack
         {
             _httpClientFactory = httpClientFactory;
         }
-        public async Task<IActionResult> GetCurrentWeather()
+        /*public async Task<IActionResult> GetCurrentWeather()
         {
             //retrieve to IdentityServer
             var authClient = _httpClientFactory.CreateClient();
@@ -31,6 +31,6 @@ namespace Api.WeatherStack
                 });
 
             // retrieve to WeatherApi
-        }
+        }*/
     }
 }
