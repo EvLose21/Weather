@@ -16,7 +16,7 @@ namespace WeatherApi.com.Services
         public async Task<T> GetCurrentWeather<T>()
         {
             var authClient = _httpClientFactory.CreateClient();
-            var discoveryDocument = await authClient.GetDiscoveryDocumentAsync("https://localhost:10001");
+            var discoveryDocument = await authClient.GetDiscoveryDocumentAsync("https://localhost:10001");      // why 10001?
             var tokenResponse = await authClient.RequestClientCredentialsTokenAsync(new ClientCredentialsTokenRequest
             {
                 Address = discoveryDocument.TokenEndpoint,
