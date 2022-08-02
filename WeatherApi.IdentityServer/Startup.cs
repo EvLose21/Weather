@@ -4,7 +4,6 @@
 
 using IdentityServer4;
 using WeatherApi.IdentityServer.Data;
-using WeatherApi.IdentityServer.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -16,6 +15,8 @@ using IdentityServer4.EntityFramework.Mappers;
 using IdentityServer4.EntityFramework.DbContexts;
 using System.Linq;
 using System.Reflection;
+using WeatherApi.Library.Data;
+using WeatherApi.Library.UserManagementService.Models;
 
 namespace WeatherApi.IdentityServer
 {

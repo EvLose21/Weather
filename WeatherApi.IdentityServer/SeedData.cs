@@ -2,12 +2,12 @@
 using System.Linq;
 using System.Security.Claims;
 using IdentityModel;
-using WeatherApi.IdentityServer.Data;
-using WeatherApi.IdentityServer.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
+using WeatherApi.Library.Data;
+using WeatherApi.Library.UserManagementService.Models;
 
 namespace WeatherApi.IdentityServer
 {

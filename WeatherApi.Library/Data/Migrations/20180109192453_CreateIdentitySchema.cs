@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 
-namespace WeatherApi.IdentityServer.Data.Migrations
+namespace WeatherApi.Library.Data.Migrations
 {
     public partial class CreateIdentitySchema : Migration
     {
