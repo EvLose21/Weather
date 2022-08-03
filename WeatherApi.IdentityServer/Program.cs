@@ -11,6 +11,7 @@ using Serilog.Events;
 using Serilog.Sinks.SystemConsole.Themes;
 using System;
 using System.Linq;
+using WeatherApi.Library.Constants;
 
 namespace WeatherApi.IdentityServer
 {
@@ -49,7 +50,7 @@ namespace WeatherApi.IdentityServer
                 {
                     Log.Information("Seeding database...");
                     var config = host.Services.GetRequiredService<IConfiguration>();
-                    var connectionString = config.GetConnectionString("UsersConnection");
+                    var connectionString = config.GetConnectionString(ConnectionNames.UsersConnection);
                     SeedData.EnsureSeedData(connectionString);
                     Log.Information("Done seeding database.");
                     return 0;

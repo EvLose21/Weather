@@ -4,9 +4,9 @@ using WeatherApi.Library.UserManagementService.Models;
 
 namespace WeatherApi.Library.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class UsersDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        public UsersDbContext(DbContextOptions<UsersDbContext> options)
             : base(options)
         {
         }

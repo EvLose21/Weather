@@ -3,7 +3,6 @@
 
 
 using IdentityServer4;
-using WeatherApi.IdentityServer.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -17,6 +16,7 @@ using System.Linq;
 using System.Reflection;
 using WeatherApi.Library.Data;
 using WeatherApi.Library.UserManagementService.Models;
+using WeatherApi.Library.Constants;
 
 namespace WeatherApi.IdentityServer
 {
@@ -36,13 +36,13 @@ namespace WeatherApi.IdentityServer
             services.AddControllersWithViews();
 
             var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
-            var identityConnectionString = Configuration.GetConnectionString("IdentityServerConnection");
+            var identityConnectionString = Configuration.GetConnectionString(ConnectionNames.IdentityServerConnection);
 
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("UsersConnection")));
+            services.AddDbContext<UsersDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString(ConnectionNames.UsersConnection)));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddEntityFrameworkStores<UsersDbContext>()
                 .AddDefaultTokenProviders();
 
             var builder = services.AddIdentityServer(options =>
