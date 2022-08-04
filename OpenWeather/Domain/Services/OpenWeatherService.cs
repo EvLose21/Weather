@@ -59,7 +59,7 @@ namespace OpenWeather.Domain.Services
         {
             T data = default(T);
 
-            var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, "http://api.weatherapi.com/v1/forecast.json?key=7e3d5c232f4844219e272126222207&q=Minsk&days=1&aqi=no&alerts=no")
+            var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, "https://api.openweathermap.org/data/2.5/forecast?q=London&appid=4fc94dab784a4fa5a8e7913573db7835")
             {
                 Headers =
                 {
