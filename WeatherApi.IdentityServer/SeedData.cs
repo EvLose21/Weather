@@ -2,12 +2,12 @@
 using System.Linq;
 using System.Security.Claims;
 using IdentityModel;
-using WeatherApi.IdentityServer.Data;
-using WeatherApi.IdentityServer.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
+using WeatherApi.Library.Data;
+using WeatherApi.Library.UserManagementService.Models;
 
 namespace WeatherApi.IdentityServer
 {
@@ -17,84 +17,60 @@ namespace WeatherApi.IdentityServer
         {
             var services = new ServiceCollection();
             services.AddLogging();
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContext<UsersDbContext>(options =>
                options.UseSqlServer(connectionString));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddEntityFrameworkStores<UsersDbContext>()
                 .AddDefaultTokenProviders();
 
             using (var serviceProvider = services.BuildServiceProvider())
             {
                 using (var scope = serviceProvider.GetRequiredService<IServiceScopeFactory>().CreateScope())
                 {
-                    var context = scope.ServiceProvider.GetService<ApplicationDbContext>();
+                    var context = scope.ServiceProvider.GetService<UsersDbContext>();
                     context.Database.Migrate();
 
                     var userMgr = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
-                    var alice = userMgr.FindByNameAsync("alice").Result;
-                    if (alice == null)
+                    var aleks = userMgr.FindByNameAsync("aleks").Result;
+                    if (aleks == null)
                     {
-                        alice = new ApplicationUser
+                        aleks = new ApplicationUser
                         {
-                            UserName = "alice",
-                            Email = "AliceSmith@email.com",
-                            EmailConfirmed = true,
-                        };
-                        var result = userMgr.CreateAsync(alice, "Pass123$").Result;
-                        if (!result.Succeeded)
-                        {
-                            throw new Exception(result.Errors.First().Description);
-                        }
-
-                        result = userMgr.AddClaimsAsync(alice, new Claim[]{
-                            new Claim(JwtClaimTypes.Name, "Alice Smith"),
-                            new Claim(JwtClaimTypes.GivenName, "Alice"),
-                            new Claim(JwtClaimTypes.FamilyName, "Smith"),
-                            new Claim(JwtClaimTypes.WebSite, "http://alice.com"),
-                        }).Result;
-                        if (!result.Succeeded)
-                        {
-                            throw new Exception(result.Errors.First().Description);
-                        }
-                        Log.Debug("alice created");
-                    }
-                    else
-                    {
-                        Log.Debug("alice already exists");
-                    }
-
-                    var bob = userMgr.FindByNameAsync("bob").Result;
-                    if (bob == null)
-                    {
-                        bob = new ApplicationUser
-                        {
-                            UserName = "bob",
-                            Email = "BobSmith@email.com",
+                            UserName = "aleks",
+                            FirstName = "Aleksandr",
+                            LastName = "Losev",
+                            Email = "weatherapi.team@gmail.com",
                             EmailConfirmed = true
                         };
-                        var result = userMgr.CreateAsync(bob, "Pass123$").Result;
+                        var result = userMgr.CreateAsync(aleks, "Pass_123").Result;
                         if (!result.Succeeded)
                         {
                             throw new Exception(result.Errors.First().Description);
                         }
 
-                        result = userMgr.AddClaimsAsync(bob, new Claim[]{
-                            new Claim(JwtClaimTypes.Name, "Bob Smith"),
-                            new Claim(JwtClaimTypes.GivenName, "Bob"),
-                            new Claim(JwtClaimTypes.FamilyName, "Smith"),
-                            new Claim(JwtClaimTypes.WebSite, "http://bob.com"),
-                            new Claim("location", "somewhere")
+                        result = userMgr.AddClaimsAsync(aleks, new Claim[]{
+                            new Claim(JwtClaimTypes.Name, "Aleksandr Losev"),
+                            new Claim(JwtClaimTypes.GivenName, "Aleksandr"),
+                            new Claim(JwtClaimTypes.FamilyName, "Losev"),
+                            new Claim(JwtClaimTypes.WebSite, "https://github.com/EvLose21/"),
                         }).Result;
                         if (!result.Succeeded)
                         {
                             throw new Exception(result.Errors.First().Description);
                         }
-                        Log.Debug("bob created");
+                        Log.Debug("Aleksandr has been created");
                     }
                     else
                     {
-                        Log.Debug("bob already exists");
+                        Log.Debug("Aleksandr already exists");
+
+                        var result = userMgr.UpdateAsync(aleks).Result;
+                        if (!result.Succeeded)
+                        {
+                            throw new Exception(result.Errors.First().Description);
+                        }
+                        Log.Debug("Aleksandr has been updated");
                     }
                 }
             }

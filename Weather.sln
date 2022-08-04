@@ -17,6 +17,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Users", "Users\Users.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherApi.IdentityServer", "WeatherApi.IdentityServer\WeatherApi.IdentityServer.csproj", "{2F1E3C75-61FD-419E-9863-11389C030577}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{0201FCF3-FC37-4548-9D1C-2B19439300DC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sql", "sql", "{A5373C47-FD3A-4F0F-B19E-AAF1A033AC08}"
+	ProjectSection(SolutionItems) = preProject
+		is_clean_up.sql = is_clean_up.sql
+		roles_claims_constraints_fix.sql = roles_claims_constraints_fix.sql
+		users_clean_up.sql = users_clean_up.sql
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherApi.UserManagementService", "WeatherApi.UserManagementService\WeatherApi.UserManagementService.csproj", "{76DF16A2-DA05-4A9F-8238-C97D483B241D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libs", "libs", "{C4A9D13E-181B-4A44-9646-2CA60E0BF03E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherApi.Library", "WeatherApi.Library\WeatherApi.Library.csproj", "{2DD85B1C-B96A-4E66-AD8E-8437EA9B0348}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +62,14 @@ Global
 		{2F1E3C75-61FD-419E-9863-11389C030577}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F1E3C75-61FD-419E-9863-11389C030577}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F1E3C75-61FD-419E-9863-11389C030577}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76DF16A2-DA05-4A9F-8238-C97D483B241D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76DF16A2-DA05-4A9F-8238-C97D483B241D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76DF16A2-DA05-4A9F-8238-C97D483B241D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76DF16A2-DA05-4A9F-8238-C97D483B241D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DD85B1C-B96A-4E66-AD8E-8437EA9B0348}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DD85B1C-B96A-4E66-AD8E-8437EA9B0348}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DD85B1C-B96A-4E66-AD8E-8437EA9B0348}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DD85B1C-B96A-4E66-AD8E-8437EA9B0348}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -54,6 +77,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{66944B9D-5D4A-4663-90ED-2A977B094EA9} = {C90417E8-5210-41DB-853D-C6E41586A924}
 		{E1FF0569-375E-4459-BCAE-054478B6AB4F} = {C90417E8-5210-41DB-853D-C6E41586A924}
+		{A5373C47-FD3A-4F0F-B19E-AAF1A033AC08} = {0201FCF3-FC37-4548-9D1C-2B19439300DC}
+		{2DD85B1C-B96A-4E66-AD8E-8437EA9B0348} = {C4A9D13E-181B-4A44-9646-2CA60E0BF03E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DF064A38-4E8F-49B2-8D0B-24884CABE3C2}

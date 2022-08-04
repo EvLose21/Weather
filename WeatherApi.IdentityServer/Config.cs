@@ -1,27 +1,25 @@
-﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
-
-
-using IdentityServer4;
+﻿using IdentityServer4;
 using IdentityServer4.Models;
 using System.Collections.Generic;
+using WeatherApi.Library.Constants;
 
 namespace WeatherApi.IdentityServer
 {
     public static class Config
     {
         public static IEnumerable<IdentityResource> IdentityResources =>
-                   new IdentityResource[]
-                   {
+            new IdentityResource[]
+            {
                 new IdentityResources.OpenId(),
                 new IdentityResources.Profile(),
-                   };
+            };
 
-        public static IEnumerable<ApiScope> ApiScopes =>
+        public static IEnumerable<ApiScope> ApiScopes => // how to add/changes scopes?
             new ApiScope[]
             {
-                new ApiScope("ApiGateway"),
-                new ApiScope("scope2"),
+                new ApiScope("Weather.Api"),
+                new ApiScope("Weather.Web"),
+                new ApiScope("Weather.Web")
             };
 
         public static IEnumerable<Client> Clients =>
@@ -39,7 +37,8 @@ namespace WeatherApi.IdentityServer
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
-                        "ApiGateway"
+                        IdConstants.WebScope,
+                        IdConstants.ApiScope
                     }
                 },
 
@@ -54,7 +53,8 @@ namespace WeatherApi.IdentityServer
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
-                        "ApiGateway"
+                        IdConstants.WebScope,
+                        IdConstants.ApiScope
                     }
                 }
             };
