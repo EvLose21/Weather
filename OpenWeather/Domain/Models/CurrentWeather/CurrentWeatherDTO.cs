@@ -1,4 +1,6 @@
-﻿namespace OpenWeather.Domain.Models.CurrentWeather
+﻿using OpenWeather.Domain.Models.CurrentWeather.Incoming;
+
+namespace OpenWeather.Domain.Models.CurrentWeather
 {
     public class CurrentWeatherDTO
     {

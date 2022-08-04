@@ -1,4 +1,4 @@
-﻿namespace OpenWeather.Domain.Models
+﻿namespace OpenWeather.Domain.Models.CurrentWeather.Incoming
 {
     public class Sys
     {
