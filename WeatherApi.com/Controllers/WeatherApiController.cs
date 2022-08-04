@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using WeatherApi.com.Interface;
 using WeatherApi.com.Models.CurrentWeather;
 using WeatherApi.com.Models.Forecast;
@@ -27,6 +26,7 @@ namespace WeatherApi.com.Controllers
             try
             {
                 var response = await _httpCallService.GetCurrentWeather<CurrentWeatherDTO>();
+               
                 return (response is null) ? NotFound(response) : Ok(response);
             }
             catch (Exception)
