@@ -20,4 +20,8 @@
     <Folder Include="Models\History\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WeatherApi.Library\WeatherApi.Library.csproj" />
+  </ItemGroup>
+
 </Project>

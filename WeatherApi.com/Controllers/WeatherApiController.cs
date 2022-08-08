@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using WeatherApi.com.Interface;
 using WeatherApi.com.Models.CurrentWeather;
 using WeatherApi.com.Models.Forecast;
+using WeatherApi.Library.Common.Models;
 
 namespace WeatherApi.com.Controllers
 {
@@ -9,10 +11,12 @@ namespace WeatherApi.com.Controllers
     [ApiController]
     public class WeatherApiController : ControllerBase
     {
+        private readonly IMapper _mapper;
         private readonly IHttpCallService _httpCallService;
-        public WeatherApiController(IHttpCallService httpCallService)
+        public WeatherApiController(IHttpCallService httpCallService, IMapper mapper)
         {
             _httpCallService = httpCallService;
+            _mapper = mapper;
         }
 
         /// <summary>
@@ -26,8 +30,9 @@ namespace WeatherApi.com.Controllers
             try
             {
                 var response = await _httpCallService.GetCurrentWeather<CurrentWeatherDTO>();
+                var mapRespomse = _mapper.Map<CurrentWeatherCommon>(response);
                
-                return (response is null) ? NotFound(response) : Ok(response);
+                return (mapRespomse is null) ? NotFound(mapRespomse) : Ok(mapRespomse);
             }
             catch (Exception)
             {
