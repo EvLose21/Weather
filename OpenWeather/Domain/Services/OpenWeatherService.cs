@@ -1,14 +1,14 @@
 ﻿using IdentityModel.Client;
 using Microsoft.Net.Http.Headers;
+using OpenWeather.Domain.Interfaces;
 using System.Diagnostics;
-using WeatherApi.com.Interface;
 
-namespace WeatherApi.com.Services
+namespace OpenWeather.Domain.Services
 {
-    public class HttpCallService : IHttpCallService
+    public class OpenWeatherService : IOpenWeatherService
     {
         private readonly IHttpClientFactory _httpClientFactory;
-        public HttpCallService(IHttpClientFactory httpClientFactory)
+        public OpenWeatherService(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
@@ -16,19 +16,19 @@ namespace WeatherApi.com.Services
         public async Task<T> GetCurrentWeather<T>()
         {
             var authClient = _httpClientFactory.CreateClient();
-            var discoveryDocument = await authClient.GetDiscoveryDocumentAsync("https://localhost:10001");      // why 10001?
+            var discoveryDocument = await authClient.GetDiscoveryDocumentAsync("https://localhost:10001");      // why 10001? IdentityServer
             var tokenResponse = await authClient.RequestClientCredentialsTokenAsync(new ClientCredentialsTokenRequest
             {
                 Address = discoveryDocument.TokenEndpoint,
                 ClientId = "client_id",
                 ClientSecret = "client_secret",
 
-                Scope = "WeatherApi"
-            });
+                Scope = "OpenWeather"
+            }); 
 
             T data = default(T);
 
-            var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, "http://api.weatherapi.com/v1/current.json?key=7e3d5c232f4844219e272126222207&q=Minsk&aqi=no")
+            var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, "https://api.openweathermap.org/data/2.5/weather?q=London&appid=4fc94dab784a4fa5a8e7913573db7835")
             {
                 Headers =
                 {
@@ -59,7 +59,7 @@ namespace WeatherApi.com.Services
         {
             T data = default(T);
 
-            var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, "http://api.weatherapi.com/v1/forecast.json?key=7e3d5c232f4844219e272126222207&q=Minsk&days=1&aqi=no&alerts=no")
+            var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, "https://api.openweathermap.org/data/2.5/forecast?q=London&appid=4fc94dab784a4fa5a8e7913573db7835")
             {
                 Headers =
                 {
