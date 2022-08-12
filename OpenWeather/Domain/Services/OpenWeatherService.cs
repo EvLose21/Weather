@@ -59,7 +59,7 @@ namespace OpenWeather.Domain.Services
         {
             T data = default(T);
 
-            var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, "https://api.openweathermap.org/data/2.5/forecast?q=London&appid=4fc94dab784a4fa5a8e7913573db7835")
+            var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, "https://api.openweathermap.org/data/2.5/forecast?q=London&cnt=8&appid=4fc94dab784a4fa5a8e7913573db7835")
             {
                 Headers =
                 {

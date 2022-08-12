@@ -3,6 +3,7 @@
     public class HourElement
     {
         public string? time { get; set; }
+        public int time_epoch { get; set; }
         public decimal temp_c { get; set; }
         public Condition? condition { get; set; }
         public decimal wind_kph { get; set; }
