@@ -19,6 +19,7 @@ builder.Services.AddAutoMapper(typeof(Program));
 
 builder.Services.AddHttpClient();
 builder.Services.AddScoped<IHttpCallService, HttpCallService>();
+builder.Services.AddScoped<IForecastHelper, HttpCallService>();
 
 builder.Services.AddAuthentication();
 builder.Services.AddAuthentication();

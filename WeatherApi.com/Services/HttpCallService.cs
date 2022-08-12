@@ -2,17 +2,19 @@
 using Microsoft.Net.Http.Headers;
 using System.Diagnostics;
 using WeatherApi.com.Interface;
+using WeatherApi.com.Models;
+using WeatherApi.com.Models.Forecast;
 
 namespace WeatherApi.com.Services
 {
-    public class HttpCallService : IHttpCallService
+    public class HttpCallService : IHttpCallService, IForecastHelper
     {
         private readonly IHttpClientFactory _httpClientFactory;
         public HttpCallService(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
-
+     
         public async Task<T> GetCurrentWeather<T>()
         {
             var authClient = _httpClientFactory.CreateClient();
@@ -81,6 +83,17 @@ namespace WeatherApi.com.Services
             }
 
             return data;
+        }
+
+        public void FixTime(ForecastDTO model)
+        {
+            var hour = model.forecast.forecastday[0].hour; // always one forecast element??
+            var temp = new List<HourElement>();
+            for (int i = 0; i < hour.Count / 3; i++)
+            {
+                temp.Add(hour[i * 3]);
+            }
+            model.forecast.forecastday[0].hour = temp;
         }
     }
 }
