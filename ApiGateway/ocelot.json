@@ -26,6 +26,30 @@
           "Port": 7195
         }
       ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/openweather/current",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/openweather/current",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7205
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/openweather/forecast",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/openweather/forecast",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7205
+        }
+      ]
     }
   ]
 }
