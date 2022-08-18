@@ -42,7 +42,8 @@ namespace OpenWeather.Controllers
             try
             {
                 var response = await _httpCallService.GetForecast<ForecastDTO>();
-                return (response is null) ? NotFound(response) : Ok(response);
+                var mapRespomse = _mapper.Map<ForecastCommon>(response);
+                return (mapRespomse is null) ? NotFound(mapRespomse) : Ok(mapRespomse);
             }
             catch (Exception)
             {

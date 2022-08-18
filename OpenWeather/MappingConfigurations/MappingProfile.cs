@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using OpenWeather.Domain.Models.CurrentWeather;
+using OpenWeather.Domain.Models.Forecast;
 using WeatherApi.Library.Common.Models;
 
 namespace OpenWeather.MappingConfigurations
@@ -27,6 +28,31 @@ namespace OpenWeather.MappingConfigurations
                 .ForMember(dest =>
                     dest.humidity,
                     opt => opt.MapFrom(src => src.main.humidity));
+
+            CreateMap<ForecastDay, ForecastdayCommon>()
+                .ForMember(dest =>
+                    dest.time,
+                    opt => opt.MapFrom(src => src.dt))
+                .ForMember(dest =>
+                    dest.pressure,
+                    opt => opt.MapFrom(src => src.main.pressure))
+                .ForMember(dest =>
+                    dest.temp,
+                    opt => opt.MapFrom(src => src.main.temp - 273))
+                .ForMember(dest =>
+                    dest.wind,
+                    opt => opt.MapFrom(src => src.wind.speed * 3.6))
+                .ForMember(dest =>
+                    dest.humidity,
+                    opt => opt.MapFrom(src => src.main.humidity));
+
+            CreateMap<ForecastDTO, ForecastCommon>()
+                .ForMember(dest =>
+                    dest.city,
+                    opt => opt.MapFrom(src => src.city.name))
+                .ForMember(dest =>
+                    dest.day,
+                    opt => opt.MapFrom(src => src.list));
         }
     }
 }
