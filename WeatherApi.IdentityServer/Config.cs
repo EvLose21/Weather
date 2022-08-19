@@ -18,7 +18,6 @@ namespace WeatherApi.IdentityServer
             new ApiScope[]
             {
                 new ApiScope("Weather.Api"),
-                new ApiScope("Weather.Web"),
                 new ApiScope("Weather.Web")
             };
 
