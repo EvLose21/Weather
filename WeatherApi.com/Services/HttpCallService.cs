@@ -87,13 +87,16 @@ namespace WeatherApi.com.Services
 
         public void FixTime(ForecastDTO model)
         {
-            var hour = model.forecast.forecastday[0].hour; // always one forecast element??
-            var temp = new List<HourElement>();
-            for (int i = 0; i < hour.Count / 3; i++)
+            for (int j = 0; j < model.forecast.forecastday.Count; j++)
             {
-                temp.Add(hour[i * 3]);
+                var temp = new List<HourElement>();
+                var hour = model.forecast.forecastday[j].hour;
+                for (int i = 0; i < hour.Count / 3; i++)
+                {
+                    temp.Add(hour[i * 3]);
+                }
+                model.forecast.forecastday[j].hour = temp;
             }
-            model.forecast.forecastday[0].hour = temp;
         }
     }
 }

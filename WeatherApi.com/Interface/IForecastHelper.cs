@@ -6,6 +6,4 @@ namespace WeatherApi.com.Interface
     {
         public void FixTime(ForecastDTO model);
     }
-
-
 }
