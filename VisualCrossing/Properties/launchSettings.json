@@ -1,0 +1,14 @@
+﻿{
+  "profiles": {
+    "VisualCrossing": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "launchUrl": "api/weatherapi/current",
+      "applicationUrl": "https://localhost:7295;http://localhost:5295",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
