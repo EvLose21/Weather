@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using WeatherApi.com.Interface;
-using WeatherApi.com.Models;
 using WeatherApi.com.Models.CurrentWeather;
 using WeatherApi.com.Models.Forecast;
 using WeatherApi.Library.Common.Models;
@@ -54,7 +53,8 @@ namespace WeatherApi.com.Controllers
             {
                 var response = await _httpCallService.GetForecast<ForecastDTO>();
                 _forecastHelper.FixTime(response);
-                return (response is null) ? NotFound(response) : Ok(response);
+                var mapRespomse = _mapper.Map<ForecastCommon>(response);
+                return (mapRespomse is null) ? NotFound(mapRespomse) : Ok(mapRespomse);
             }
             catch (Exception)
             {
