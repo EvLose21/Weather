@@ -1,0 +1,28 @@
+version: '3.4'
+
+services:
+  openweather:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "6101:80"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+  weatherapi.com:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "6102:80"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+
+  apigateway:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "7000:80"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro

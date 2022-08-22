@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+  openweather:
+    image: ${DOCKER_REGISTRY-}openweather
+    build:
+      context: .
+      dockerfile: OpenWeather/Dockerfile
+
+  weatherapi.com:
+    image: ${DOCKER_REGISTRY-}weatherapicom
+    build:
+      context: .
+      dockerfile: WeatherApi.com/Dockerfile
+
+
+  apigateway:
+    image: ${DOCKER_REGISTRY-}apigateway
+    build:
+      context: .
+      dockerfile: ApiGateway/Dockerfile
+

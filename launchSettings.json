@@ -1,0 +1,16 @@
+{
+  "profiles": {
+    "Docker Compose": {
+      "commandName": "DockerCompose",
+      "composeLaunchAction": "LaunchBrowser",
+      "composeLaunchServiceName": "apigateway",
+      "composeLaunchUrl": "{Scheme}://localhost:{ServicePort}",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "openweather": "StartDebugging",
+        "weatherapi.com": "StartDebugging",
+        "apigateway": "StartDebugging"
+      }
+    }
+  }
+}

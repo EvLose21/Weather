@@ -1,17 +1,17 @@
 {
   "GlobalConfiguration": {
-    "basUrl": "https://localhost:7122"
+    "basUrl": "http://localhost:7000"
   },
   "Routes": [
     {
       "UpstreamPathTemplate": "/gateway/weatherapi/current",
       "UpstreamHttpMethod": [ "Get" ],
       "DownstreamPathTemplate": "/api/weatherapi/current",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 7195
+          "Port": 6102
         }
       ]
     },
@@ -19,11 +19,11 @@
       "UpstreamPathTemplate": "/gateway/weatherapi/forecast",
       "UpstreamHttpMethod": [ "Get" ],
       "DownstreamPathTemplate": "/api/weatherapi/forecast",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 7195
+          "Port": 6102
         }
       ]
     },
@@ -31,11 +31,11 @@
       "UpstreamPathTemplate": "/gateway/openweather/current",
       "UpstreamHttpMethod": [ "Get" ],
       "DownstreamPathTemplate": "/api/openweather/current",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 7205
+          "Port": 6101
         }
       ]
     },
@@ -43,11 +43,11 @@
       "UpstreamPathTemplate": "/gateway/openweather/forecast",
       "UpstreamHttpMethod": [ "Get" ],
       "DownstreamPathTemplate": "/api/openweather/forecast",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 7205
+          "Port": 6101
         }
       ]
     }

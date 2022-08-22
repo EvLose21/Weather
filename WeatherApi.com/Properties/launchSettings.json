@@ -1,14 +1,21 @@
-﻿{
+{
   "profiles": {
     "WeatherApi.com": {
       "commandName": "Project",
-      "dotnetRunMessages": true,
-      "launchBrowser": false,
+      "launchBrowser": true,
       "launchUrl": "api/weatherapi/current",
-      "applicationUrl": "https://localhost:7195;http://localhost:5195",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      },
+      "applicationUrl": "https://localhost:6002;http://localhost:6102",
+      "dotnetRunMessages": true
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchBrowser": true,
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/api/weatherapi/current",
+      "publishAllPorts": true,
+      "useSSL": true
     }
   }
 }

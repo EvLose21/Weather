@@ -28,6 +28,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libs", "libs", "{C4A9D13E-1
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherApi.Library", "WeatherApi.Library\WeatherApi.Library.csproj", "{2DD85B1C-B96A-4E66-AD8E-8437EA9B0348}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{E50A2594-CF40-4206-B215-013487E98A58}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,6 +60,10 @@ Global
 		{2DD85B1C-B96A-4E66-AD8E-8437EA9B0348}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2DD85B1C-B96A-4E66-AD8E-8437EA9B0348}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2DD85B1C-B96A-4E66-AD8E-8437EA9B0348}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E50A2594-CF40-4206-B215-013487E98A58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E50A2594-CF40-4206-B215-013487E98A58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E50A2594-CF40-4206-B215-013487E98A58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E50A2594-CF40-4206-B215-013487E98A58}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
