@@ -2,13 +2,13 @@
 {
     public class Location
     {
-        public string? name { get; set; }
-        public string? region { get; set; }
-        public string? country { get; set; }
-        public decimal lat { get; set; }
-        public decimal lon { get; set; }
-        public string? tz_id { get; set; }
-        public string? localtime { get; set; }
-        public int localtime_epoch { get; set; }
+        public string? Name { get; set; }
+        public string? Region { get; set; }
+        public string? Country { get; set; }
+        public decimal Lat { get; set; }
+        public decimal Lon { get; set; }
+        public string? Tz_id { get; set; }
+        public string? Localtime { get; set; }
+        public int Localtime_epoch { get; set; }
     }
 }

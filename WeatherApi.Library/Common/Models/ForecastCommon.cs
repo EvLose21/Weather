@@ -2,8 +2,8 @@
 {
     public class ForecastCommon
     {
-        public string? city { get; set; }
-        public List<ForecastdayCommon>? day { get; set; }
+        public string? City { get; set; }
+        public List<ForecastdayCommon>? Day { get; set; }
 
     }
 }

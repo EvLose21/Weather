@@ -2,12 +2,12 @@
 {
     public class AstroElement
     {
-        public string? sunrise { get; set; }
-        public string? sunset { get; set; }
-        public string? moonrise { get; set; }
-        public string? moonset { get; set; }
-        public string? moon_phase { get; set; }
-        public decimal moon_illumination { get; set; }
+        public string? Sunrise { get; set; }
+        public string? Sunset { get; set; }
+        public string? Moonrise { get; set; }
+        public string? Moonset { get; set; }
+        public string? Moon_phase { get; set; }
+        public string? Moon_illumination { get; set; }
     }
 
 }

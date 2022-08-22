@@ -11,47 +11,47 @@ namespace OpenWeather.MappingConfigurations
         {
             CreateMap<CurrentWeatherDTO, CurrentWeatherCommon>()
                 .ForMember(dest =>
-                    dest.city,
+                    dest.City,
                     opt => opt.MapFrom(src => src.name))
                 .ForMember(dest =>
-                    dest.time,
+                    dest.Time,
                     opt => opt.MapFrom(src => src.dt))
                 .ForMember(dest =>
-                    dest.pressure,
+                    dest.Pressure,
                     opt => opt.MapFrom(src => src.main.pressure))
                 .ForMember(dest =>
-                    dest.temp,
+                    dest.Temp,
                     opt => opt.MapFrom(src => src.main.temp - 273))
                 .ForMember(dest =>
-                    dest.wind,
+                    dest.Wind,
                     opt => opt.MapFrom(src => src.wind.speed * 3.6))
                 .ForMember(dest =>
-                    dest.humidity,
+                    dest.Humidity,
                     opt => opt.MapFrom(src => src.main.humidity));
 
             CreateMap<ForecastDay, ForecastdayCommon>()
                 .ForMember(dest =>
-                    dest.time,
+                    dest.Time,
                     opt => opt.MapFrom(src => src.dt))
                 .ForMember(dest =>
-                    dest.pressure,
+                    dest.Pressure,
                     opt => opt.MapFrom(src => src.main.pressure))
                 .ForMember(dest =>
-                    dest.temp,
+                    dest.Temp,
                     opt => opt.MapFrom(src => src.main.temp - 273))
                 .ForMember(dest =>
-                    dest.wind,
+                    dest.Wind,
                     opt => opt.MapFrom(src => src.wind.speed * 3.6))
                 .ForMember(dest =>
-                    dest.humidity,
+                    dest.Humidity,
                     opt => opt.MapFrom(src => src.main.humidity));
 
             CreateMap<ForecastDTO, ForecastCommon>()
                 .ForMember(dest =>
-                    dest.city,
+                    dest.City,
                     opt => opt.MapFrom(src => src.city.name))
                 .ForMember(dest =>
-                    dest.day,
+                    dest.Day,
                     opt => opt.MapFrom(src => src.list));
         }
     }

@@ -8,10 +8,10 @@ namespace WeatherApi.Library.Common.Models
 {
     public class ForecastdayCommon
     {
-        public double temp { get; set; }
-        public double pressure { get; set; }
-        public int humidity { get; set; }
-        public double wind { get; set; }
-        public int time { get; set; }
+        public double Temp { get; set; }
+        public double Pressure { get; set; }
+        public int Humidity { get; set; }
+        public double Wind { get; set; }
+        public int Time { get; set; }
     }
 }

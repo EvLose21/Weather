@@ -31,7 +31,7 @@ namespace WeatherApi.com.Controllers
         {
             try
             {
-                var response = await _httpCallService.GetCurrentWeather<CurrentWeatherDTO>();
+                var response = await _httpCallService.GetCurrentWeather();
                 var mapRespomse = _mapper.Map<CurrentWeatherCommon>(response);
                
                 return (mapRespomse is null) ? NotFound(mapRespomse) : Ok(mapRespomse);
@@ -51,7 +51,7 @@ namespace WeatherApi.com.Controllers
         {
             try
             {
-                var response = await _httpCallService.GetForecast<ForecastDTO>();
+                var response = await _httpCallService.GetForecast();
                 _forecastHelper.FixTime(response);
                 var mapRespomse = _mapper.Map<ForecastCommon>(response);
                 return (mapRespomse is null) ? NotFound(mapRespomse) : Ok(mapRespomse);

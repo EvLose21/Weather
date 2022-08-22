@@ -2,17 +2,17 @@
 {
     public class Current
     {
-        public string? last_updated { get; set; }
-        public decimal temp_c { get; set; }
-        public decimal feelslike_c { get; set; }
-        public Condition? condition { get; set; }
-        public decimal wind_kph { get; set; }
-        public decimal pressure_mb { get; set; }
-        public decimal precip_mm { get; set; }
-        public int humidity { get; set; }
-        public int cloud { get; set; }
-        public int is_day { get; set; }
-        public decimal uv { get; set; }
-        public decimal gust_kph { get; set; }
+        public string? Last_updated { get; set; }
+        public decimal Temp_c { get; set; }
+        public decimal Feelslike_c { get; set; }
+        public Condition? Condition { get; set; }
+        public decimal Wind_kph { get; set; }
+        public decimal Pressure_mb { get; set; }
+        public decimal Precip_mm { get; set; }
+        public int Humidity { get; set; }
+        public int Cloud { get; set; }
+        public int Is_day { get; set; }
+        public decimal Uv { get; set; }
+        public decimal Gust_kph { get; set; }
     }
 }

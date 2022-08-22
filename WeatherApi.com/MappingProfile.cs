@@ -12,49 +12,49 @@ namespace WeatherApi.com
         {
             CreateMap<CurrentWeatherDTO, CurrentWeatherCommon>()
                 .ForMember(dest =>
-                    dest.city,
-                    opt => opt.MapFrom(src => src.location.name))
+                    dest.City,
+                    opt => opt.MapFrom(src => src.Location.Name))
                 .ForMember(dest =>
-                    dest.time,
-                    opt => opt.MapFrom(src => src.location.localtime_epoch))
+                    dest.Time,
+                    opt => opt.MapFrom(src => src.Location.Localtime_epoch))
                 .ForMember(dest =>
-                    dest.pressure,
-                    opt => opt.MapFrom(src => src.current.pressure_mb))
+                    dest.Pressure,
+                    opt => opt.MapFrom(src => src.Current.Pressure_mb))
                 .ForMember(dest =>
-                    dest.temp,
-                    opt => opt.MapFrom(src => src.current.temp_c))
+                    dest.Temp,
+                    opt => opt.MapFrom(src => src.Current.Temp_c))
                 .ForMember(dest =>
-                    dest.wind,
-                    opt => opt.MapFrom(src => src.current.wind_kph))
+                    dest.Wind,
+                    opt => opt.MapFrom(src => src.Current.Wind_kph))
                 .ForMember(dest =>
-                    dest.humidity,
-                    opt => opt.MapFrom(src => src.current.humidity));
+                    dest.Humidity,
+                    opt => opt.MapFrom(src => src.Current.Humidity));
 
             CreateMap<HourElement, ForecastdayCommon>()
                 .ForMember(dest =>
-                    dest.time,
-                    opt => opt.MapFrom(src => src.time_epoch))
+                    dest.Time,
+                    opt => opt.MapFrom(src => src.Time_epoch))
                 .ForMember(dest =>
-                    dest.wind,
-                    opt => opt.MapFrom(src => src.wind_kph))
+                    dest.Wind,
+                    opt => opt.MapFrom(src => src.Wind_kph))
                 .ForMember(dest =>
-                    dest.humidity,
-                    opt => opt.MapFrom(src => src.humidity))
+                    dest.Humidity,
+                    opt => opt.MapFrom(src => src.Humidity))
                 .ForMember(dest =>
-                    dest.pressure,
-                    opt => opt.MapFrom(src => src.pressure_mb))
+                    dest.Pressure,
+                    opt => opt.MapFrom(src => src.Pressure_mb))
                 .ForMember(dest =>
-                    dest.temp,
-                    opt => opt.MapFrom(src => src.temp_c));
+                    dest.Temp,
+                    opt => opt.MapFrom(src => src.Temp_c));
 
             
             CreateMap<ForecastDTO, ForecastCommon>()
                 .ForMember(dest =>
-                    dest.city,
-                    opt => opt.MapFrom(src => src.location.name))
+                    dest.City,
+                    opt => opt.MapFrom(src => src.Location.Name))
                 .ForPath(dest =>
-                    dest.day,
-                    opt => opt.MapFrom(src => src.forecast.forecastday[0].hour)); // need fix in the future
+                    dest.Day,
+                    opt => opt.MapFrom(src => src.Forecast.Forecastday[0].Hour)); // todo need fix in the future
         }
     }
 }
