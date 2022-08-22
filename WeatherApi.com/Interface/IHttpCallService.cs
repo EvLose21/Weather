@@ -1,8 +1,11 @@
-﻿namespace WeatherApi.com.Interface
+﻿using WeatherApi.com.Models.CurrentWeather;
+using WeatherApi.com.Models.Forecast;
+
+namespace WeatherApi.com.Interface
 {
     public interface IHttpCallService
     {
-        Task<T> GetCurrentWeather<T>();
-        Task<T> GetForecast<T>();
+        Task<CurrentWeatherDTO> GetCurrentWeather();
+        Task<ForecastDTO> GetForecast();
     }
 }

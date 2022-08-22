@@ -1,35 +1,29 @@
-﻿using IdentityModel.Client;
-using Microsoft.Net.Http.Headers;
+﻿using Microsoft.Net.Http.Headers;
 using System.Diagnostics;
+using System.Text.Json;
 using WeatherApi.com.Interface;
 using WeatherApi.com.Models;
+using WeatherApi.com.Models.CurrentWeather;
 using WeatherApi.com.Models.Forecast;
+using System.Text.Json.Serialization;
 
 namespace WeatherApi.com.Services
 {
     public class HttpCallService : IHttpCallService, IForecastHelper
     {
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly JsonSerializerOptions _options;
         public HttpCallService(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
+            _options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
         }
-     
-        public async Task<T> GetCurrentWeather<T>()
+
+        public CurrentWeatherDTO? Current { get; set; }
+        public ForecastDTO? Forecast { get; set; }
+
+        public async Task<CurrentWeatherDTO> GetCurrentWeather()
         {
-            var authClient = _httpClientFactory.CreateClient();
-            var discoveryDocument = await authClient.GetDiscoveryDocumentAsync("https://localhost:10001");      // why 10001?
-            var tokenResponse = await authClient.RequestClientCredentialsTokenAsync(new ClientCredentialsTokenRequest
-            {
-                Address = discoveryDocument.TokenEndpoint,
-                ClientId = "client_id",
-                ClientSecret = "client_secret",
-
-                Scope = "WeatherApi"
-            });
-
-            T data = default(T);
-
             var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, "http://api.weatherapi.com/v1/current.json?key=7e3d5c232f4844219e272126222207&q=Minsk&aqi=no")
             {
                 Headers =
@@ -41,12 +35,13 @@ namespace WeatherApi.com.Services
 
             var httpClient = _httpClientFactory.CreateClient();
 
-            httpClient.SetBearerToken(tokenResponse.AccessToken);
-
             HttpResponseMessage response = await httpClient.SendAsync(httpRequestMessage);
             if (response.IsSuccessStatusCode)
             {
-                data = await response.Content.ReadFromJsonAsync<T>().ConfigureAwait(false);
+                using var current = await response.Content.ReadAsStreamAsync();
+
+                Current = await JsonSerializer.DeserializeAsync<CurrentWeatherDTO>(current, _options);
+
             }
 
             else
@@ -54,13 +49,11 @@ namespace WeatherApi.com.Services
                 Debug.WriteLine("failure");
             }
 
-            return data;
+            return Current;
         }
 
-        public async Task<T> GetForecast<T>()
+        public async Task<ForecastDTO> GetForecast()
         {
-            T data = default(T);
-
             var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, "http://api.weatherapi.com/v1/forecast.json?key=7e3d5c232f4844219e272126222207&q=Minsk&days=1&aqi=no&alerts=no")
             {
                 Headers =
@@ -71,10 +64,12 @@ namespace WeatherApi.com.Services
             };
 
             var httpClient = _httpClientFactory.CreateClient();
-            HttpResponseMessage response = await httpClient.SendAsync(httpRequestMessage);
+            var response = await httpClient.SendAsync(httpRequestMessage);
             if (response.IsSuccessStatusCode)
             {
-                data = await response.Content.ReadFromJsonAsync<T>().ConfigureAwait(false);
+                using var forecast = await response.Content.ReadAsStreamAsync();
+
+                Forecast = await JsonSerializer.DeserializeAsync<ForecastDTO>(forecast, _options);
             }
 
             else
@@ -82,20 +77,20 @@ namespace WeatherApi.com.Services
                 Debug.WriteLine("failure");
             }
 
-            return data;
+            return Forecast;
         }
 
         public void FixTime(ForecastDTO model)
         {
-            for (int j = 0; j < model.forecast.forecastday.Count; j++)
+            for (int j = 0; j < model.Forecast.Forecastday.Count; j++)
             {
                 var temp = new List<HourElement>();
-                var hour = model.forecast.forecastday[j].hour;
+                var hour = model.Forecast.Forecastday[j].Hour;
                 for (int i = 0; i < hour.Count / 3; i++)
                 {
                     temp.Add(hour[i * 3]);
                 }
-                model.forecast.forecastday[j].hour = temp;
+                model.Forecast.Forecastday[j].Hour = temp;
             }
         }
     }
